@@ -1,0 +1,65 @@
+.foto-perfil {
+    width: 200px; /* Defina a largura */
+    height: 200px; /* Defina a altura igual à largura */
+    border-radius: 50%; /* 50% transforma o quadrado em círculo */
+    object-fit: cover; /* Garante que a foto não fique distorcida */
+    border: 3px solid #ccc; /* Opcional: Adiciona uma borda na cor cinza */
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundo da página */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #241d88, #2e2e2e);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container principal */
+.container {
+    width: 200%;
+    max-width: 700px;
+    text-align: center;
+}
+
+
+/* Nome */
+h1 {
+    margin-bottom: 20px;
+}
+
+/* Descrição */
+p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+/* Links estilo botão */
+.link {
+    display: block;
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+/* Efeito hover */
+.link:hover {
+    background-color: #607bf5;
+    color: white;
+    transform: scale(1.05);
+}
