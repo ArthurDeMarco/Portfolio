@@ -1,0 +1,115 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* CORPO */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* HEADER */
+header {
+    background: linear-gradient(90deg, #881414, #c91c1c);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+/* NAVBAR */
+nav {
+    background-color: rgb(36, 34, 34);
+    text-align: center;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: red;
+}
+
+/* MAIN */
+main {
+    width: 90%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+/* TEXTO INICIAL */
+main > p {
+    margin-bottom: 30px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* TÍTULO CATÁLOGO */
+h2 {
+    margin-bottom: 20px;
+    color: #881414;
+    text-align: center;
+}
+
+/* CARD DOS VEÍCULOS */
+section {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* IMAGENS */
+section img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* NOME DO VEÍCULO */
+section strong {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* PREÇO */
+section strong + br + text {
+    color: green;
+}
+
+/* PARÁGRAFOS */
+section p {
+    margin-top: 10px;
+    line-height: 1.6;
+}
+
+/* LINK FINAL */
+body > a {
+    display: block;
+    text-align: center;
+    margin: 40px 0;
+    font-weight: bold;
+    text-decoration: none;
+    color: #881414;
+}
+
+body > a:hover {
+    text-decoration: underline;
+}
