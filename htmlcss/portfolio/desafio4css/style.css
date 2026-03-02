@@ -6,98 +6,201 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(180deg, #f8f8f8, #eaeaea);
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
 }
 
-/* HEADER */
+/* HEADER COM ANIMAÇÃO */
 header {
     background: linear-gradient(90deg, #881414, #c91c1c);
     color: white;
     text-align: center;
-    padding: 40px 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    padding: 50px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: fadeIn 1s ease-in;
 }
 
-/* NAVBAR */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* NAVBAR RESPONSIVA */
 nav {
     background-color: #111;
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    padding: 15px;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    padding: 10px 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    padding: 10px 15px;
     transition: 0.3s;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+/* Pseudo-elemento para hover no menu */
+nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #ff4d4d;
+    transition: 0.4s;
+}
+
+nav a:hover::after {
+    width: 100%;
 }
 
 nav a:hover {
     color: #ff4d4d;
-    transform: scale(1.05);
 }
 
 /* MAIN */
 main {
     width: 90%;
     max-width: 1200px;
-    margin: 50px auto;
+    margin: 40px auto;
 }
 
-/* CATÁLOGO */
+.intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+h2 {
+    text-align: center;
+    color: #881414;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* CATÁLOGO GRID */
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 /* CARD */
-.catalogo section {
+.card {
     background-color: white;
-    width: 350px;
-    padding: 20px;
-    border-radius: 14px;
+    border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-    transition: 0.3s ease;
-
+    transition: 0.4s ease;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
-.catalogo section:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-/* IMAGEM */
-.catalogo img {
+/* IMAGE WRAPPER */
+.image-wrapper {
+    overflow: hidden;
+    height: 220px;
+}
+
+.image-wrapper img {
     width: 100%;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    transition: 0.3s ease;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease;
 }
 
-.catalogo section:hover img {
-    transform: scale(1.03);
+.card:hover .image-wrapper img {
+    transform: scale(1.1);
 }
 
-/* TITULOS */
-.catalogo strong {
-    font-size: 18px;
+/* CONTEÚDO DO CARD */
+.card-content {
+    padding: 25px;
+    flex-grow: 1;
+}
+
+.card-content strong {
+    font-size: 1.4rem;
+    display: block;
     margin-bottom: 5px;
+    color: #111;
 }
 
-/* PARÁGRAFOS */
-.catalogo p {
-    margin-top: 10px;
-    line-height: 1.6;
-    color: #444;
+/* Pseudo-elemento para estilizar o preço */
+.price-tag {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.price-tag::before {
+    content: '🏷️ ';
+}
+
+.card-content p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.inner-info h3 {
+    font-size: 1.1rem;
+    color: #c91c1c;
+    margin: 15px 0 5px;
+}
+
+/* BOTÃO VOLTAR */
+.back-link {
+    display: block;
+    width: fit-content;
+    margin: 50px auto;
+    padding: 12px 30px;
+    background: #881414;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: #c91c1c;
+    transform: scale(1.05);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .nav-container {
+        gap: 10px;
+    }
+    
+    nav a {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+
+    h2 { font-size: 1.6rem; }
 }
