@@ -1,108 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML&CSS Alpar</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Portfólio Arthur - Alpar</title>
 </head>
+<body>
 
-  <body style="text-align: center;">
+    <div class="container">
+        <header class="profile">
+            <div class="avatar-container">
+                <img src="./assets/images/eu.png" alt="A minha foto." class="avatar"/>
+            </div>
+            <h1>Arthur</h1>
+            <h2>Desenvolvedor Front-end</h2>
+            
+            <p class="bio">
+                Gosto de criar <strong>sites</strong> e <strong>sistemas</strong> para a internet, 
+                meu objetivo é facilitar a vida de todos.
+            </p>
 
-    <img src="./assets/images/eu.png" alt="A minha foto." width="200px"/>
+            <a href="https://www.linkedin.com/in/arthur-de-marco-b1b246375/" target="_blank" class="linkedin-btn">
+                Meu LinkedIn
+            </a>
+        </header>
 
-    <h1>Meu nome é Arthur</h1>
-    <h2>Sou desenvolvedor Front-end</h2>
+        <main class="projects">
+            <h3>Desafios HTML & CSS</h3>
+            
+            <nav class="project-list">
+                <a href="./cafeteria/index.html" class="project-card">
+                    <img src="assets/images/logo.jpg" alt="Logo" class="mini-logo">
+                    <span>Cardápio Cafeteria</span>
+                </a>
 
-    <p>
-      Gosto de criar <strong>sites</strong> e <strong>sistemas</strong> para a
-      <i>internet</i>,<br />
-      meu objetivo é <u>facilitar a vida de todos.</u>
-    </p>
+                <a href="./seusite-table/index.html" class="project-card">
+                    <span>Layout Site (Table)</span>
+                </a>
 
-    <a href="https://www.linkedin.com/in/arthur-de-marco-b1b246375/">
-      Meu LinkedIn
-    </a>
+                <a href="./podcast/index.html" class="project-card">
+                    <span>PodCast</span>
+                </a>
 
-    <h2>Desafio 2 - HTML</h2>
+                <a href="./card/index.html" class="project-card">
+                    <span>Card Interativo</span>
+                </a>
 
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./cafeteria/index.html">
-          <img src="assets/images/logo.jpg" alt="Logo cafeteria" width="50">
-          Cardápio Cafeteria
-        </a>
-      </li>
-    </ul>
+                <a href="./desafio3css/index.html" class="project-card">
+                    <span>Site Navbar</span>
+                </a>
 
-    <hr>
+                <a href="./desafio4css/index.html" class="project-card">
+                    <span>Site Flex Desafio 4</span>
+                </a>
 
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./seusite-table/index.html">
-          Layout site
-        </a>
-      </li>
-    </ul>
+                <a href="./desafio5css/index.html" class="project-card">
+                    <span>Site Grid Desafio 5</span>
+                </a>
 
-    <hr>
+                <a href="./desafio6css/index.html" class="project-card">
+                    <span>Carta Desafio 6</span>
+                </a>
+            </nav>
+        </main>
+    </div>
 
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./podcast/index.html">
-          PodCast
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./card/index.html">
-          Card
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./desafio3css/index.html">
-          Site Navbar
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./desafio4css/index.html">
-          Site Flex Desafio 4
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./desafio5css/index.html">
-          Site Grid Desafio 5
-        </a>
-      </li>
-    </ul>
-
-    <hr>
-
-    <ul style="list-style: none; padding: 0;">
-      <li>
-        <a href="./desafio6css/index.html">
-          Carta Desafio 6
-        </a>
-      </li>
-    </ul>
-
-  </body>
+</body>
 </html>

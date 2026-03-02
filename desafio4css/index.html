@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Card</title>
+    <title>Catálogo - Carros e Motos Legais</title>
 </head>
-
 <body>
 
     <header>
@@ -15,102 +13,69 @@
     </header>
 
     <nav>
-        <a href="#">CARROS</a>
-        <a href="#">MOTOS</a>
-        <a href="#">PEÇAS</a>
-        <a href="#">Para venda</a>
+        <div class="nav-container">
+            <a href="#">CARROS</a>
+            <a href="#">MOTOS</a>
+            <a href="#">PEÇAS</a>
+            <a href="#">PARA VENDA</a>
+        </div>
     </nav>
 
     <main>
-
-        <p>
+        <p class="intro-text">
             A Carros e Motos Legais é referência em qualidade, confiança e paixão por veículos.
             Trabalhamos com carros e motos cuidadosamente selecionados.
         </p>
 
+        <h2>Catálogo de Veículos</h2>
+
         <div class="catalogo">
-            <h2>Catálogo de Carros</h2>
-
-            <section>
-                <img src="./assets/images/eclipse.jpg" width="200"><br>
-                <strong>Mitsubishi Eclipse</strong><br>
-                R$ 120.000
-                <p>
-                    O Mitsubishi Eclipse é um dos esportivos japoneses mais icônicos dos anos 90 e 2000.
-                    Conhecido pelo seu design agressivo e motor turbo de alto desempenho, ele conquistou
-                    uma geração inteira de apaixonados por velocidade.
-                </p>
-
-                <p>
-                    Equipado com motorização potente e excelente estabilidade, o Eclipse oferece uma
-                    experiência de direção esportiva, com respostas rápidas e ótimo desempenho em
-                    aceleração. É um carro ideal para quem busca estilo e performance.
-                </p>
-
-                <p>
-                    Além disso, seu visual marcante o tornou referência na cultura automotiva e no
-                    universo dos carros modificados.
-                </p>
+            <section class="card">
+                <div class="image-wrapper">
+                    <img src="./assets/images/eclipse.jpg" alt="Mitsubishi Eclipse">
+                </div>
+                <div class="card-content">
+                    <strong>Mitsubishi Eclipse</strong>
+                    <span class="price-tag">R$ 120.000</span>
+                    <p>O Mitsubishi Eclipse é um dos esportivos japoneses mais icônicos dos anos 90 e 2000. Conhecido pelo seu design agressivo e motor turbo.</p>
+                    <p>Equipado com motorização potente e excelente estabilidade, o Eclipse oferece uma experiência de direção esportiva.</p>
+                    <p>Além disso, seu visual marcante o tornou referência na cultura automotiva.</p>
+                </div>
             </section>
 
-            <section>
-                <img src="./assets/images/V4.jpg" width="200"><br>
-                <strong>V4 Ducati</strong><br>
-                R$ 210.000
-                <section>
-                    <h2>Ducati Panigale V4</h2>
-
-                    <p>
-                        A Ducati Panigale V4 é uma superbike de altíssimo desempenho, projetada com
-                        tecnologia derivada da MotoGP. Seu motor V4 entrega potência impressionante
-                        e uma aceleração extremamente agressiva.
-                    </p>
-
-                    <p>
-                        Com design aerodinâmico e construção leve, a Panigale V4 proporciona uma
-                        pilotagem precisa, estável e emocionante. É uma motocicleta voltada para
-                        pilotos exigentes que buscam performance máxima.
-                    </p>
-
-                    <p>
-                        Além da potência, a Ducati oferece sistemas eletrônicos avançados de controle
-                        de tração, frenagem e estabilidade, elevando o nível de segurança e controle.
-                    </p>
-                </section>
+            <section class="card">
+                <div class="image-wrapper">
+                    <img src="./assets/images/V4.jpg" alt="V4 Ducati">
+                </div>
+                <div class="card-content">
+                    <strong>V4 Ducati</strong>
+                    <span class="price-tag">R$ 210.000</span>
+                    <div class="inner-info">
+                        <h3>Ducati Panigale V4</h3>
+                        <p>A Ducati Panigale V4 é uma superbike de altíssimo desempenho, projetada com tecnologia derivada da MotoGP.</p>
+                        <p>Com design aerodinâmico e construção leve, a Panigale V4 proporciona uma pilotagem precisa e emocionante.</p>
+                    </div>
+                </div>
             </section>
 
-            <section>
-                <img src="./assets/images/nsx.jpg" width="200"><br>
-                <strong>Honda nsx</strong><br>
-                R$ 160.000
-                <section>
-                    <h2>Honda NSX</h2>
-
-                    <p>
-                        O Honda NSX é um superesportivo japonês que combina tecnologia híbrida com
-                        desempenho de alto nível. Desenvolvido com foco em equilíbrio e precisão,
-                        ele entrega uma experiência de direção refinada e extremamente eficiente.
-                    </p>
-
-                    <p>
-                        Seu motor V6 biturbo aliado ao sistema elétrico proporciona aceleração
-                        instantânea e excelente controle em curvas. O NSX é conhecido por unir
-                        inovação tecnológica com esportividade.
-                    </p>
-
-                    <p>
-                        O interior é sofisticado, com acabamento premium e foco total no motorista,
-                        oferecendo conforto sem abrir mão da performance.
-                    </p>
-                </section>
+            <section class="card">
+                <div class="image-wrapper">
+                    <img src="./assets/images/nsx.jpg" alt="Honda NSX">
+                </div>
+                <div class="card-content">
+                    <strong>Honda NSX</strong>
+                    <span class="price-tag">R$ 160.000</span>
+                    <div class="inner-info">
+                        <h3>Honda NSX</h3>
+                        <p>O Honda NSX é um superesportivo japonês que combina tecnologia híbrida com desempenho de alto nível.</p>
+                        <p>Seu motor V6 biturbo aliado ao sistema elétrico proporciona aceleração instantânea.</p>
+                    </div>
+                </div>
             </section>
         </div>
-
     </main>
 
-
-    <a href="../index.html">Voltar ao Portifólio</a>
+    <a href="../index.html" class="back-link">Voltar ao Portfólio</a>
 
 </body>
-
 </html>
