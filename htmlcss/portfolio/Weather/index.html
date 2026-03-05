@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <section class="card">
+            <img class="icon"
+            src="https://openweathermap.org/payload/api/media/file/04d.png"
+            alt="clouds"
+            />
+            <h2>24</h2>
+            <p class="feels-like">Sensação térmica de <span>24</span></p>
+            <div class="min-max">
+                <p>Min: <span class="min">24</span></p>
+                <p>Max: <span class="max">24</span></p>
+            </div>
+            <p class="humidity">Humidade <span>66%</span></p>
+            <div class="wind">  
+                <p> 
+                    Velocidade do vento: 
+                    <span>5,74</span>m/s
+                </p>
+                <img 
+                    src="./assest/images/arrow.png" 
+                    alt="Uma seta que representa a direção do vento"
+                />
+            </div>
+        </section>
+        <section class="input">
+            <input type="text" placeholder="Busque por uma cidade" />
+            <button type="button">Buscar</button>
+        </section>
+        <script src="./previsao.js"></script>
+    </body>
+</html>
