@@ -1,0 +1,50 @@
+body {
+    background: #0f2027;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    background-size: cover;
+    background-attachment: fixed;
+    transition: 0.6s;
+    color: white;
+
+}
+
+.busca-container {
+    position: sticky;
+    top: 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    z-index: 1000;
+
+}
+
+.card {
+
+    border-radius: 15px;
+
+    transition: 0.25s;
+
+}
+
+.card:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+
+}
+
+.card img {
+    height: 90px;
+    object-fit: cover;
+
+}
+
+/* Isso força o modal a se destacar de qualquer background */
+.modal-content {
+    background-color: #ffffff !important; 
+    border: 2px solid #000;
+    z-index: 1055; /* Garante que fique acima de tudo */
+}
+
+#modalBody {
+    color: #212529 !important; /* Cor de texto padrão legível */
+    background-color: #ffffff;
+}
