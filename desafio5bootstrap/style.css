@@ -1,0 +1,29 @@
+
+.card {
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Garante que a página tenha no mínimo a altura da tela inteira */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* O corpo da página vira um container flexível */
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* O conteúdo principal (main) ocupa todo o espaço livre */
+main {
+    flex: 1 0 auto;
+}
+
+/* O rodapé não cresce, ele apenas se acomoda no final */
+footer {
+    flex-shrink: 0;
+}
