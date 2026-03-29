@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="escolaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento Escolar - Service Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="AppController">
+    <h1 ng-bind="mensagem"></h1>
+
+    <div class="container">
+
+        <div class="cadastro">
+            <h3>Novo Cadastro</h3>
+            <div class="filtros"> 
+                <input type="text" ng-model="novoUsuario.nome" placeholder="Nome do Usuário">
+                <select ng-model="novoUsuario.tipo">
+                    <option value="Aluno">Aluno</option>
+                    <option value="Professor">Professor</option>
+                </select>
+                <button ng-click="adicionar()" class="btn-add">Cadastrar</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <ul>
+            <li ng-repeat="u in usuarios | orderBy:'nome'"
+                ng-style="{'border-left-color': u.tipo === 'Professor' ? '#e67e22' : '#3498db'}">
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>{{ u.nome | uppercase }}</strong> - {{ u.tipo }}
+                        <br>
+                        <small>Cadastrado em: {{ u.dataCadastro | date:'dd/MM/yyyy' }}</small>
+                    </div>
+
+                    <button ng-click="remover($index)" class="btn-delete">Remover</button>
+                </div>
+            </li>
+        </ul>
+
+        <p>Total de registros no Service: {{ usuarios.length }}</p>
+    </div>
+
+    <script src="app.js"></script> <script src="tasks.service.js"></script> <script src="script.js"></script> </body>
+</html>

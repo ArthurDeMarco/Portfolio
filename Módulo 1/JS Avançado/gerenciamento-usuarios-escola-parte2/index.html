@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="escolaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento Escolar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="AppController">
+    <h1 ng-bind="mensagem"></h1>
+
+    <div ng-controller="ListaController" class="container">
+
+        <div class="cadastro">
+            <h3>Novo Cadastro</h3>
+            <div class="filtros"> 
+                <input type="text" ng-model="novoUsuario.nome" placeholder="Nome do Aluno/Professor">
+                <select ng-model="novoUsuario.tipo">
+                    <option value="Aluno">Aluno</option>
+                    <option value="Professor">Professor</option>
+                </select>
+                <button ng-click="adicionarUsuario()" class="btn-add">Cadastrar</button>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="filtros">
+            <input type="text" ng-model="buscaNome" placeholder="Buscar por nome...">
+            <select ng-model="buscaTipo">
+                <option value="">Todos os tipos</option>
+                <option value="Aluno">Apenas Alunos</option>
+                <option value="Professor">Apenas Professores</option>
+            </select>
+        </div>
+
+        <p>
+            Total:
+            <strong>Alunos:</strong> {{ (usuarios | filter:{tipo:'Aluno'}).length }} |
+            <strong>Professores:</strong> {{ (usuarios | filter:{tipo:'Professor'}).length }}
+        </p>
+
+        <ul>
+            <li ng-repeat="u in usuarios | filter:buscaNome | filter:{tipo: buscaTipo} | orderBy:'nome'"
+                ng-style="{'border-left-color': u.tipo === 'Professor' ? '#e67e22' : '#3498db'}">
+
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <strong>{{ u.nome | uppercase }}</strong>
+                        - {{ u.tipo }}
+                        <br>
+                        <small>(Cadastrado em: {{ u.dataCadastro | date:'dd/MM/yyyy' }})</small>
+                    </div>
+
+                    <button ng-click="removerUsuario(u)" class="btn-delete" title="Remover">×</button>
+                </div>
+            </li>
+        </ul>
+
+        <p ng-if="(usuarios | filter:buscaNome | filter:{tipo: buscaTipo}).length === 0">
+            Nenhum usuário encontrado para essa busca.
+        </p>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>

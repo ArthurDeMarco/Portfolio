@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Automação Residencial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Central de Automação Singleton</h1>
+
+    <div class="painel-controle">
+        <div class="controle-grupo">
+            <h3>Sala de Estar</h3>
+            <button data-comodo="sala" data-acao="ligar">Ligar</button>
+            <button data-comodo="sala" data-acao="desligar">Desligar</button>
+        </div>
+
+        <div class="controle-grupo">
+            <h3>Quarto</h3>
+            <button data-comodo="quarto" data-acao="ligar">Ligar</button>
+            <button data-comodo="quarto" data-acao="desligar">Desligar</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="casa">
+        <div id="sala" class="comodo">SALA</div>
+        <div id="quarto" class="comodo">QUARTO</div>
+    </div>
+
+    <script src="./CentralDeLuzes.js"></script>
+</body>
+</html>

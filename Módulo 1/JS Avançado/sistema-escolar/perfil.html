@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<body>
+    <div id="perfil-container">
+        </div>
+
+    <script>
+        // Pega o usuário que salvamos no login
+        const logado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+        if (logado) {
+            const container = document.getElementById('perfil-container');
+            
+            // Exibe os dados. Note que usamos dados._nome pois o JSON 
+            // salva o estado das propriedades da classe.
+            container.innerHTML = `
+                <h1>Perfil do Usuário</h1>
+                <p><strong>Nome:</strong> ${logado._nome}</p>
+                <p><strong>E-mail:</strong> ${logado._email}</p>
+                <p><strong>Info Adicional:</strong> ${logado._turma || logado._materias}</p>
+                <button onclick="localStorage.clear(); window.location.href='index.html'">Sair</button>
+            `;
+        } else {
+            window.location.href = "index.html"; // Se não tiver ninguém logado, volta pro login
+        }
+    </script>
+</body>
+</html>

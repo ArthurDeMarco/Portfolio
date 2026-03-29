@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="escolaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento Escolar</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="AppController">
+
+    <div class="card-usuario">
+        <h1 ng-bind="mensagem"></h1>
+
+        <div class="perfil">
+            <span class="tipo-label tipo-{{usuario.tipo}}">{{ usuario.tipo }}</span>
+
+            <p><strong>Nome:</strong> {{ usuario.nome }}</p>
+
+            <div ng-if="usuario.tipo === 'Aluno'">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135810.png" class="perfil-foto" width="100">
+                <p style="color: #2ecc71">Estudante Ativo</p>
+            </div>
+
+            <div ng-if="usuario.tipo === 'Professor'">
+                <img src="https://cdn-icons-png.flaticon.com/512/1995/1995531.png" class="perfil-foto" width="100">
+                <p style="color: #e67e22">Docente</p>
+            </div>
+
+            <div class="input-group">
+                <input type="text" ng-model="usuario.nome">
+            </div>
+
+            <button ng-click="alternarUsuario()">Alterar Perfil</button>
+
+            <h3>Matérias:</h3>
+            <ul>
+                <li ng-repeat="materia in materias">{{ materia }}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
