@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="escolaApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciamento Escolar - Service Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="AppController">
+    <h1 ng-bind="mensagem"></h1>
+
+    <form name="userForm" ng-submit="salvar()" novalidate>
+        <h3>Novo Cadastro (Simulação API)</h3>
+
+        <div class="campo">
+            <input type="text" name="nome" ng-model="novoUsuario.nome" placeholder="Nome" required>
+            <span class="erro" ng-show="userForm.nome.$dirty && userForm.nome.$error.required">
+                O nome é obrigatório!
+            </span>
+        </div>
+
+        <div class="campo">
+            <input type="email" name="email" ng-model="novoUsuario.email" placeholder="E-mail" required>
+            <span class="erro" ng-show="userForm.email.$dirty && userForm.email.$error.required">E-mail
+                obrigatório!</span>
+            <span class="erro" ng-show="userForm.email.$error.email">E-mail inválido!</span>
+        </div>
+
+        <select ng-model="novoUsuario.tipo" required>
+            <option value="Aluno">Aluno</option>
+            <option value="Professor">Professor</option>
+        </select>
+
+        <button type="submit" ng-disabled="userForm.$invalid || carregando">
+            {{ carregando ? 'Salvando...' : 'Cadastrar' }}
+        </button>
+
+        <div class="loading-spinner" ng-show="carregando">🚀 Enviando para o servidor...</div>
+    </form>
+
+    <hr>
+
+    <div class="container">
+        <h3>Lista de Cadastrados</h3>
+        <ul>
+            <li ng-repeat="u in usuarios | orderBy:'nome'">
+                <strong>{{ u.nome | uppercase }}</strong> - {{ u.email }} ({{ u.tipo }})
+            </li>
+        </ul>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="tasks.service.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

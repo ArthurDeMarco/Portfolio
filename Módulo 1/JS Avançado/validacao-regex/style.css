@@ -1,0 +1,13 @@
+input {
+    border: 2px solid #ccc;
+    padding: 8px;
+    display: block;
+    margin-bottom: 5px;
+    outline: none; /* Remove o azul padrão ao clicar */
+}
+
+.msg {
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 15px;
+}
