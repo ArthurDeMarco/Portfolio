@@ -46,7 +46,7 @@ app.controller('WeatherController', function ($scope, $http) {
             'background-size': 'cover',
             'background-position': 'center',
             'background-attachment': 'fixed',
-            'transition': '0.5s' // Suaviza a troca de imagem
+            'transition': '0.5s' 
         };
 
         $scope.cardActive = true;

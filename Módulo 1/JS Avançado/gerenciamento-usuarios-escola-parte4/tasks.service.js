@@ -13,7 +13,7 @@ angular.module('escolaApp')
             copia.dataCadastro = new Date();
             usuarios.push(copia);
 
-            defer.resolve("Usuário cadastrado com sucesso!"); // Promessa cumprida!
+            defer.resolve("Usuário cadastrado com sucesso!"); // Promessa cumprida
         }, 2000);
 
         return defer.promise; 

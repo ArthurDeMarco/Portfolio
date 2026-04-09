@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="HabitApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodTrack</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+</head>
+
+<body ng-controller="MainController" ng-style="bgCustomStyle()">
+
+    <!-- ==================== TELA DE BOAS-VINDAS ==================== -->
+    <div class="welcome-screen" ng-if="modoVisao === 'welcome'">
+        <div class="welcome-particles">
+            <span class="particle" ng-repeat="p in [1,2,3,4,5,6,7,8]"></span>
+        </div>
+        <div class="welcome-content">
+            <div class="welcome-emoji-row">
+                <span class="welcome-emoji e1">😢</span>
+                <span class="welcome-emoji e2">😐</span>
+                <span class="welcome-emoji e3">🙂</span>
+                <span class="welcome-emoji e4">😄</span>
+            </div>
+            <h1 class="welcome-title">MoodTrack</h1>
+            <p class="welcome-subtitle">Acompanhe seus hábitos e humor diariamente</p>
+
+            <div class="welcome-features">
+                <div class="feature-item">
+                    <span class="material-symbols-rounded">mood</span>
+                    <span>Registre seu humor</span>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-rounded">check_circle</span>
+                    <span>Acompanhe hábitos</span>
+                </div>
+                <div class="feature-item">
+                    <span class="material-symbols-rounded">insights</span>
+                    <span>Veja seu progresso</span>
+                </div>
+            </div>
+
+            <div class="welcome-name-box" ng-if="!nomeUsuario">
+                <input type="text" class="welcome-input" placeholder="Seu nome (opcional)" ng-model="nomeTemp"
+                    ng-keypress="$event.keyCode === 13 && entrarApp()">
+                <button class="welcome-btn" ng-click="entrarApp()">
+                    Começar
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </button>
+            </div>
+            <div class="welcome-name-box" ng-if="nomeUsuario">
+                <p class="welcome-back">Bem-vindo de volta, <strong>{{nomeUsuario}}</strong>!</p>
+                <button class="welcome-btn" ng-click="entrarApp()">
+                    Continuar
+                    <span class="material-symbols-rounded">arrow_forward</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FRASE DO DIA ==================== -->
+    <div class="frase-wrapper glass animated" ng-if="modoVisao === 'calendario' && mostrarFrases && fraseExibida">
+        <p class="frase-texto">"{{fraseExibida.frase}}"</p>
+        <small class="frase-autor">— {{fraseExibida.autor}}</small>
+        <span class="material-symbols-rounded close-frase" ng-click="toggleFrases()">close</span>
+    </div>
+
+    <!-- ==================== LAYOUT PRINCIPAL ==================== -->
+    <div class="main-layout" ng-if="modoVisao === 'calendario'">
+
+        <div class="user-greeting" ng-if="nomeUsuario">
+            <span>Olá, {{nomeUsuario}}! {{saudacaoHorario()}}</span>
+        </div>
+
+        <div class="calendar-container glass">
+            <header class="calendar-header">
+                <p class="calendar-current-date">{{meses[mesAtual]}} {{anoAtual}}</p>
+                <div class="calendar-navigation">
+                    <span class="material-symbols-rounded btn-tool" ng-click="voltarParaInicio()" title="Página inicial">home</span>
+                    <span class="material-symbols-rounded btn-tool" ng-click="abrirConfiguracoes()" title="Configurações">settings</span>
+                    <span class="material-symbols-rounded btn-tool" ng-click="toggleFrases()" title="Frases">
+                        {{mostrarFrases ? 'format_quote' : 'visibility_off'}}
+                    </span>
+                    <span class="material-symbols-rounded btn-history" ng-click="toggleHistorico()" title="Histórico">history</span>
+                    <span class="material-symbols-rounded" ng-click="changeMonth(-1)">chevron_left</span>
+                    <span class="material-symbols-rounded" ng-click="changeMonth(1)">chevron_right</span>
+                </div>
+            </header>
+
+            <div class="calendar-body">
+                <ul class="calendar-weekdays">
+                    <li>Dom</li><li>Seg</li><li>Ter</li><li>Qua</li><li>Qui</li><li>Sex</li><li>Sab</li>
+                </ul>
+                <ul class="calendar-dates">
+                    <li ng-repeat="dia in dias"
+                        class="{{dia.class}}"
+                        ng-class="{'has-record': dia.temRegistro}"
+                        ng-click="openDay(dia)">
+                        {{dia.number}}
+                        <span class="day-emoji" ng-if="dia.emojiRegistro">{{dia.emojiRegistro}}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mini-stats">
+                <div class="stat-item">
+                    <span class="stat-number">{{statsSemanais.diasRegistrados}}</span>
+                    <span class="stat-label">registros este mês</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{statsSemanais.humorMedio}}</span>
+                    <span class="stat-label">humor médio</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">{{statsSemanais.habitosMaisFeito || '—'}}</span>
+                    <span class="stat-label">hábito top</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== HISTÓRICO ==================== -->
+        <div class="lista-container glass" ng-show="mostrarHistorico">
+            <div class="lista-header">
+                <h2>Histórico</h2>
+                <button class="btn-icon" ng-click="toggleFiltrosInternos()">
+                    <span class="material-symbols-rounded">filter_alt</span>
+                </button>
+            </div>
+
+            <div class="filtros-drawer" ng-show="filtrosVisiveis">
+                <input type="date" id="filtroDataHistorico" ng-model="filtroDataObj" ng-change="onFiltroDataInput()" onchange="angular.element(this).scope().onFiltroDataInput(this.value)">
+                <select id="filtroHumorHistorico" ng-model="filtroHumor" ng-change="onFiltroHumorInput(filtroHumor)" onchange="angular.element(this).scope().onFiltroHumorInput(this.value)">
+                    <option value="">Todos os humores</option>
+                    <option value="1">😢 Muito triste</option>
+                    <option value="2">😐 Neutro</option>
+                    <option value="3">🙂 Feliz</option>
+                    <option value="4">😄 Muito feliz</option>
+                </select>
+                <button class="btn-limpar-filtro" ng-click="limparFiltros()" ng-show="temFiltroAtivo()">
+                    <span class="material-symbols-rounded">clear</span> Limpar
+                </button>
+            </div>
+
+            <div class="lista-vazia" ng-if="registrosFiltrados.length === 0">
+                <span class="material-symbols-rounded empty-icon">event_busy</span>
+                <p>Nenhum registro encontrado</p>
+            </div>
+
+            <div class="registro-item" ng-repeat="reg in registrosFiltrados | orderBy:'-dataExibicao'">
+                <div class="reg-header">
+                    <strong>{{formatarData(reg.dataExibicao)}}</strong>
+                    <span class="reg-emoji">{{ emojiMap[reg.humor] }}</span>
+                </div>
+                <div class="reg-habitos">
+                    <span ng-repeat="h in reg.habitos" ng-if="h.concluido" class="badge-habito">{{h.nome}}</span>
+                    <span class="badge-nenhum" ng-if="nenhumHabitoConcluido(reg)">Nenhum hábito</span>
+                </div>
+                <p class="reg-obs" ng-if="reg.obs">"{{reg.obs}}"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TELA DE REGISTRO (ZOOM) — NÍVEL RAIZ ==================== -->
+    <div class="zoom-screen" ng-if="modoVisao === 'zoom'">
+        <div class="zoom-card glass">
+            <header class="zoom-header">
+                <button class="back-btn" ng-click="fecharSemSalvar()">
+                    <span class="material-symbols-rounded">arrow_back</span> Voltar
+                </button>
+                <h2>{{diaSelecionado.number}} de {{meses[mesAtual]}}, {{anoAtual}}</h2>
+            </header>
+
+            <div class="progresso-container">
+                <div class="progresso-info">
+                    <small>Progresso dos hábitos</small>
+                    <small class="progresso-pct">{{calcularProgresso()}}%</small>
+                </div>
+                <div class="barra-progresso">
+                    <div class="preenchimento" ng-style="{'width': calcularProgresso() + '%'}"></div>
+                </div>
+            </div>
+
+            <section class="secao-registro">
+                <h3>Como você está hoje?</h3>
+                <div class="humor-selector">
+                    <label ng-repeat="n in [1,2,3,4]" class="humor-option">
+                        <input type="radio" ng-model="registroAtual.humor" ng-value="n">
+                        <div class="emoji-btn-wrap">
+                            <span class="emoji-btn">{{ emojiMap[n] }}</span>
+                            <span class="emoji-label">{{ labelMap[n] }}</span>
+                        </div>
+                    </label>
+                </div>
+
+                <h3>Hábitos do dia</h3>
+                <div class="habitos-lista">
+                    <label ng-repeat="habito in registroAtual.habitos" class="habito-item"
+                           ng-class="{'habito-done': habito.concluido}">
+                        <input type="checkbox" ng-model="habito.concluido">
+                        <span class="habito-check">
+                            <span class="material-symbols-rounded">{{habito.concluido ? 'check_box' : 'check_box_outline_blank'}}</span>
+                        </span>
+                        <span class="habito-nome">{{habito.nome}}</span>
+                    </label>
+                </div>
+
+                <h3>Observações <span class="opcional-tag">(opcional)</span></h3>
+                <textarea ng-model="registroAtual.obs" placeholder="Como foi seu dia? Algo especial aconteceu?"></textarea>
+
+                <div class="zoom-actions">
+                    <button class="cancel-btn" ng-click="fecharSemSalvar()">Cancelar</button>
+                    <button class="save-btn" ng-click="salvarEFechar()">
+                        <span class="material-symbols-rounded">save</span> Salvar
+                    </button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL DE CONFIGURAÇÕES ==================== -->
+    <div class="config-overlay" ng-if="mostrarConfig" ng-click="fecharConfiguracoes()">
+        <div class="config-modal glass" ng-click="$event.stopPropagation()">
+            <header class="config-header">
+                <h2>Configurações</h2>
+                <span class="material-symbols-rounded close-config" ng-click="fecharConfiguracoes()">close</span>
+            </header>
+
+            <div class="config-section">
+                <h3>Personalização</h3>
+                <div class="config-item">
+                    <label>Nome do usuário</label>
+                    <input type="text" class="config-input" ng-model="nomeUsuario" ng-change="salvarNome()" placeholder="Seu nome">
+                </div>
+
+                <div class="config-item">
+                    <label>Background personalizado</label>
+                    <p class="config-hint">Envie uma imagem para usar como plano de fundo</p>
+                    <div class="bg-preview" ng-if="bgImagem">
+                        <img ng-src="{{bgImagem}}" alt="Background">
+                        <button class="btn-remove-bg" ng-click="removerBackground()">
+                            <span class="material-symbols-rounded">delete</span> Remover
+                        </button>
+                    </div>
+                    <label class="upload-btn" for="bgUpload">
+                        <span class="material-symbols-rounded">upload</span>
+                        {{bgImagem ? 'Trocar imagem' : 'Escolher imagem'}}
+                    </label>
+                    <input type="file" id="bgUpload" accept="image/*" style="display:none"
+                        onchange="angular.element(this).scope().onBgFileSelected(this.files[0])">
+                </div>
+
+                <div class="config-item" ng-if="bgImagem">
+                    <label>Opacidade do overlay</label>
+                    <input type="range" min="0" max="90" ng-model="bgOverlayOpacity" ng-change="salvarConfiguracao()" class="config-range">
+                    <small>{{bgOverlayOpacity}}%</small>
+                </div>
+            </div>
+
+            <div class="config-section">
+                <h3>Dados</h3>
+                <button class="btn-danger" ng-click="confirmarLimparDados()">
+                    <span class="material-symbols-rounded">warning</span> Limpar todos os registros
+                </button>
+            </div>
+
+            <div class="config-actions">
+                <button class="save-btn config-save-btn" ng-click="fecharConfiguracoes()">
+                    <span class="material-symbols-rounded">save</span> Salvar configurações
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TOAST ==================== -->
+    <div class="toast" ng-class="{'toast-visible': toastVisivel}">
+        <span class="material-symbols-rounded">{{toastIcon}}</span>
+        {{toastMsg}}
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="script.js"></script>
+    <script src="StorageService.js"></script>
+    <script src="CalendarService.js"></script>
+    <script src="MainController.js"></script>
+</body>
+</html>
